@@ -12,10 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -33,6 +35,12 @@ public class User implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "role_id")
     private Role role;
+
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     private static final long serialVersionUID = 6496677084838138698L;
 

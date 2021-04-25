@@ -10,11 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "courses")
 public class Course implements Serializable{
 
@@ -26,6 +28,11 @@ public class Course implements Serializable{
 	private String description;
 	private boolean started;
 
-	private static final long serialVersionUID = -508358790157469385L;
+	public Course(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    private static final long serialVersionUID = -508358790157469385L;
 
 }

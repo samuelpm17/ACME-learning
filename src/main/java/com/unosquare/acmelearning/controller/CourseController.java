@@ -3,15 +3,16 @@ package com.unosquare.acmelearning.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.unosquare.acmelearning.exception.BusinessException;
 import com.unosquare.acmelearning.model.entity.Course;
 import com.unosquare.acmelearning.service.CourseService;
+import com.unosquare.acmelearning.service.dto.CourseCreationDto;
 
 @RestController
 @RequestMapping("/courses")
@@ -29,19 +30,9 @@ public class CourseController {
 		return courseService.findAll();
 	}
 
-	@GetMapping("/list/{id}")
-	public Course findById(@PathVariable Long id){
-		return courseService.findById(id);
-	}
-
 	@PostMapping("/create")
-	public Course create(Course course) {
-		return courseService.create(course);
-	}
-
-	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Long id) {
-		courseService.delete(id);
+	public Course create(@RequestBody CourseCreationDto courseDto) throws BusinessException {
+		return courseService.create(courseDto);
 	}
 
 }

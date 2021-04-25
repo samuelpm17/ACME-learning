@@ -8,4 +8,5 @@ import com.unosquare.acmelearning.model.entity.Role;
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Long> {
 
+    public Role findByName(String name);
 }

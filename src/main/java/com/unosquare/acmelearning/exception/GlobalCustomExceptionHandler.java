@@ -27,6 +27,13 @@ public class GlobalCustomExceptionHandler extends ResponseEntityExceptionHandler
         return handleLogAndResponse(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<Object> handleApplicationException(
+            final BusinessException ex,
+            final WebRequest request) throws IOException {
+        return handleLogAndResponse(ex, request, HttpStatus.BAD_REQUEST);
+    }
+
     private ResponseEntity<Object> handleLogAndResponse(
             final Exception ex,
             final WebRequest request,

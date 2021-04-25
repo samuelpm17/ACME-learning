@@ -17,3 +17,7 @@ insert into students (parent_phone, parent_name, person_id) values ('3003334455'
 insert into courses (name,description,started) values ('Math','Just Math',true);
 insert into courses (name,description,started) values ('Programming','The best course',true);
 insert into courses (name,description,started) values ('Painting','Its manga time!',true);
+
+insert into instructors_courses (instructor_person_id, courses_id ) values (1, 1);
+insert into instructors_courses (instructor_person_id, courses_id ) values (1, 2);
+insert into instructors_courses (instructor_person_id, courses_id ) values (1, 3);
