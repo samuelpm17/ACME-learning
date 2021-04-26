@@ -2,7 +2,9 @@ package com.unosquare.acmelearning.service;
 
 import java.util.List;
 
+import com.unosquare.acmelearning.exception.ApplicationException;
 import com.unosquare.acmelearning.model.entity.Student;
+import com.unosquare.acmelearning.service.dto.StudentSignUpDto;
 
 public interface StudentService {
 
@@ -10,8 +12,8 @@ public interface StudentService {
 
 	public Student findById(Long id);
 
-	public Student save(Student student);
-
 	public void delete(Long id);
+
+    public Student save(StudentSignUpDto studentDto) throws ApplicationException;
 
 }

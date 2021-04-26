@@ -32,6 +32,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers("/oauth/token").permitAll()
 		.antMatchers("/h2-console/**").permitAll()
+        .antMatchers("/instructors/signup").permitAll()
+        .antMatchers("/students/signup").permitAll()
         .antMatchers(HttpMethod.POST, "/courses/**").hasRole("INSTRUCTOR")
         .antMatchers(HttpMethod.PUT, "/courses/**").hasRole("INSTRUCTOR")
         .antMatchers(HttpMethod.DELETE, "/courses/**").hasRole("INSTRUCTOR")

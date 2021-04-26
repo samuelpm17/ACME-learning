@@ -30,7 +30,6 @@ public class InstructorServiceImpl implements InstructorService {
     @Autowired
     public InstructorServiceImpl(InstructorRepository instructorRepository, RoleService roleService,
             BCryptPasswordEncoder passwordEncoder, JsonWebTokenService tokenService) {
-        super();
         this.instructorRepository = instructorRepository;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
@@ -91,6 +90,7 @@ public class InstructorServiceImpl implements InstructorService {
 
         Instructor newInstructor = new Instructor();
         newInstructor.setPerson(newPerson);
+        newInstructor.setSalary(instructorDto.getSalary());
 
         return newInstructor;
     }
