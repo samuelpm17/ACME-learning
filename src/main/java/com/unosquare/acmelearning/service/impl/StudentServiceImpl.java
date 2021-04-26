@@ -52,6 +52,11 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(id);
     }
 
+    @Override
+    public Student findByUsername(String username) {
+        return studentRepository.findByPerson_User_Username(username);
+    }
+
     private Student getStudentFromSignUpRequest(StudentSignUpDto studentDto) throws ApplicationException {
         Role role = roleService.findByName("ROLE_STUDENT")
                 .orElseThrow(() -> new ApplicationException("The role 'STUDENT' does not exists"));
@@ -70,11 +75,6 @@ public class StudentServiceImpl implements StudentService {
         newStudent.setParentPhone(studentDto.getParentPhone());
 
         return newStudent;
-    }
-
-    @Override
-    public Student findByUsername(String username) {
-        return studentRepository.findByPerson_User_Username(username);
     }
 
 }
