@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.unosquare.acmelearning.exception.ApplicationException;
 import com.unosquare.acmelearning.exception.BusinessException;
+import com.unosquare.acmelearning.model.entity.Course;
 import com.unosquare.acmelearning.model.entity.Enrollment;
 import com.unosquare.acmelearning.model.entity.Student;
 import com.unosquare.acmelearning.service.EnrollmentService;
@@ -34,13 +35,19 @@ public class EnrollmentController {
 		return enrollmentService.enroll(authorization, courseId);
 	}
 
-	@GetMapping("/course/{courseId}")
-	public List<Student> findById(@PathVariable Long courseId) {
-		return enrollmentService.findStudentsByCourseId(courseId);
-	}
+    @GetMapping("/course/{courseId}")
+    public List<Student> findById(@PathVariable Long courseId) {
+        return enrollmentService.findStudentsByCourseId(courseId);
+    }
 
-	@DeleteMapping("/delete/{id]")
-	public void delete(@PathVariable Long id) {
-		enrollmentService.delete(id);
+    @GetMapping("/mycourses")
+    public List<Course> findById(@RequestHeader String authorization) throws ApplicationException, BusinessException {
+        return enrollmentService.findMyCourses(authorization);
+    }
+
+	@DeleteMapping("/drop/{courseId}")
+    public void delete(@RequestHeader("Authorization") String authorization, @PathVariable Long courseId)
+            throws BusinessException, ApplicationException {
+		enrollmentService.drop(authorization, courseId);
 	}
 }

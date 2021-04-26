@@ -40,6 +40,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         .antMatchers("/instructors/**").hasRole("INSTRUCTOR")
         .antMatchers("/enrollments/course/**").hasRole("INSTRUCTOR")
         .antMatchers("/courses/list").hasRole("STUDENT")
+        .antMatchers("/enrollments/mycourses").hasRole("STUDENT")
+        .antMatchers("/enrollments/drop/**").hasRole("STUDENT")
         .antMatchers("/enrollments/enroll/**").hasRole("STUDENT")
 		.anyRequest().authenticated();
 		

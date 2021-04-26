@@ -20,6 +20,9 @@ import com.unosquare.acmelearning.service.StudentService;
 @Service
 public class EnrollmentServiceImpl implements EnrollmentService {
 
+    private static final String ERROR_STUDENT_NOT_FOUND = "Could not find any student with username %s";
+    private static final String ERROR_COURSE_NOT_FOUND = "Could not find any course with id %s";
+    
     private EnrollmentRepository enrollmentRepository;
     private StudentService studentService;
     private CourseService courseService;
@@ -55,27 +58,63 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         String username = tokenService.getUserNameFromRequest(authorization);
         Student student = studentService.findByUsername(username);
         if (student == null) {
-            throw new BusinessException(String.format("Could not find any student with username %s", username));
+            throw new BusinessException(String.format(ERROR_STUDENT_NOT_FOUND, username));
         }
-        
+
         Course course = courseService.findById(courseId);
-        
+
         if (course == null) {
-            throw new BusinessException(String.format("Could not find any course with id %s", courseId));
+            throw new BusinessException(String.format(ERROR_COURSE_NOT_FOUND, courseId));
         }
-        
+
         if (course.isStarted()) {
             throw new BusinessException("It is not possible to enroll in a course that has already started");
         }
-        
+
         Enrollment newEnrollment = new Enrollment(course, student);
 
         return enrollmentRepository.save(newEnrollment);
     }
 
     @Override
-    public void delete(Long id) {
-        enrollmentRepository.deleteById(id);
+    public void drop(String authorization, Long courseId) throws BusinessException, ApplicationException {
+        String username = tokenService.getUserNameFromRequest(authorization);
+        Student student = studentService.findByUsername(username);
+        if (student == null) {
+            throw new BusinessException(String.format(ERROR_STUDENT_NOT_FOUND, username));
+        }
+
+        Course course = courseService.findById(courseId);
+
+        if (course == null) {
+            throw new BusinessException(String.format(ERROR_COURSE_NOT_FOUND, courseId));
+        }
+
+        Enrollment enrollment = enrollmentRepository.findByCourse_IdAndStudent_Id(course.getId(), student.getId());
+
+        if (enrollment == null) {
+            throw new BusinessException(String.format("Could not find any enrollment of %s in the course %s",
+                    student.getPerson().getUser().getUsername(), course.getName()));
+        }
+
+        enrollmentRepository.deleteById(enrollment.getId());
+    }
+
+    @Override
+    public List<Course> findMyCourses(String authorization) throws ApplicationException, BusinessException {
+        String username = tokenService.getUserNameFromRequest(authorization);
+        Student student = studentService.findByUsername(username);
+
+        if (student == null) {
+            throw new BusinessException(String.format(ERROR_STUDENT_NOT_FOUND, username));
+        }
+
+        List<Enrollment> enrollmentsList = enrollmentRepository.findByStudent_Id(student.getId());
+
+        List<Course> coursesList = enrollmentsList.stream().map(enrollment -> enrollment.getCourse())
+                .collect(Collectors.toList());
+
+        return coursesList;
     }
 
 }
