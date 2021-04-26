@@ -10,8 +10,6 @@ import com.unosquare.acmelearning.model.entity.Student;
 
 public interface EnrollmentService {
 
-	public List<Enrollment> findAll();
-
 	public List<Student> findStudentsByCourseId(Long courseId);
 
 	public Enrollment enroll(String authorization, Long courseId) throws ApplicationException, BusinessException;

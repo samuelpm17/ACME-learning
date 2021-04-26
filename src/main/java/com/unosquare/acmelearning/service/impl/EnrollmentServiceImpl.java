@@ -38,11 +38,6 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    public List<Enrollment> findAll() {
-        return (List<Enrollment>) enrollmentRepository.findAll();
-    }
-
-    @Override
     public List<Student> findStudentsByCourseId(Long courseId) {
         List<Enrollment> enrollmentsList = enrollmentRepository.findByCourse_Id(courseId);
         if (enrollmentsList == null || enrollmentsList.isEmpty()) {
