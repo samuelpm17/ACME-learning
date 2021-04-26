@@ -40,7 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         .antMatchers("/instructors/**").hasRole("INSTRUCTOR")
         .antMatchers("/enrollments/course/**").hasRole("INSTRUCTOR")
         .antMatchers("/courses/list").hasRole("STUDENT")
-		//.antMatchers(HttpMethod.GET,"/api/users/**").hasAnyRole("ADMIN","USER")
+        .antMatchers("/enrollments/enroll/**").hasRole("STUDENT")
 		.anyRequest().authenticated();
 		
 		http.headers().frameOptions().disable();

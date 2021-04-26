@@ -72,4 +72,9 @@ public class StudentServiceImpl implements StudentService {
         return newStudent;
     }
 
+    @Override
+    public Student findByUsername(String username) {
+        return studentRepository.findByPerson_User_Username(username);
+    }
+
 }

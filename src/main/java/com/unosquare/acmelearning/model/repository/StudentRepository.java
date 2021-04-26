@@ -7,5 +7,5 @@ import com.unosquare.acmelearning.model.entity.Student;
 
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Long> {
-
+    public Student findByPerson_User_Username(String username);
 }

@@ -31,6 +31,11 @@ public class Enrollment implements Serializable{
 	@JoinColumn(name = "student_id")
 	private Student student;
 
-	private static final long serialVersionUID = -4679113473385348486L;
+	public Enrollment(Course course, Student student) {
+        this.course = course;
+        this.student = student;
+    }
+
+    private static final long serialVersionUID = -4679113473385348486L;
 	
 }

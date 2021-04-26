@@ -15,5 +15,7 @@ public interface StudentService {
 	public void delete(Long id);
 
     public Student save(StudentSignUpDto studentDto) throws ApplicationException;
+    
+    public Student findByUsername(String username);
 
 }
