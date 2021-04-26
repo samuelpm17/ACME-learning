@@ -41,3 +41,16 @@ insert into courses (name,description,started,active) values ('Painting','Its ma
 insert into instructors_courses (instructor_id, courses_id) values (1, 1);
 insert into instructors_courses (instructor_id, courses_id) values (1, 2);
 insert into instructors_courses (instructor_id, courses_id) values (2, 3);
+
+insert into enrollments (student_id, course_id) values (1,1);
+insert into enrollments (student_id, course_id) values (1,2);
+insert into enrollments (student_id, course_id) values (2,1);
+insert into enrollments (student_id, course_id) values (3,1);
+insert into enrollments (student_id, course_id) values (3,2);
+insert into enrollments (student_id, course_id) values (4,2);
+insert into enrollments (student_id, course_id) values (4,3);
+insert into enrollments (student_id, course_id) values (5,3);
+insert into enrollments (student_id, course_id) values (5,1);
+insert into enrollments (student_id, course_id) values (5,2);
+insert into enrollments (student_id, course_id) values (6,2);
+insert into enrollments (student_id, course_id) values (6,3);

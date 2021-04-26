@@ -1,10 +1,12 @@
 package com.unosquare.acmelearning.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.unosquare.acmelearning.model.entity.Enrollment;
+import com.unosquare.acmelearning.model.entity.Student;
 import com.unosquare.acmelearning.model.repository.EnrollmentRepository;
 import com.unosquare.acmelearning.service.EnrollmentService;
 
@@ -23,8 +25,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	}
 
 	@Override
-	public Enrollment findById(Long id) {
-		return enrollmentRepository.findById(id).orElse(null);
+	public List<Student> findStudentsByCourseId(Long courseId) {
+	    List<Enrollment> enrollmentsList = enrollmentRepository.findByCourse_Id(courseId);
+	    if(enrollmentsList == null || enrollmentsList.isEmpty()) {
+	        return null;
+	    }
+	    List<Student> studentsList = enrollmentsList.stream().map(enrollment -> enrollment.getStudent()).collect(Collectors.toList());
+		return studentsList;
 	}
 
 	@Override

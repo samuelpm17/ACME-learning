@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unosquare.acmelearning.model.entity.Enrollment;
+import com.unosquare.acmelearning.model.entity.Student;
 import com.unosquare.acmelearning.service.EnrollmentService;
 
 @RestController
@@ -25,19 +26,14 @@ public class EnrollmentController {
 		this.enrollmentService = enrollmentService;
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/enroll")
 	public Enrollment create(@RequestBody Enrollment enrollment) {
 		return enrollmentService.save(enrollment);
 	}
 
-	@GetMapping("/list")
-	public List<Enrollment> list() {
-		return enrollmentService.findAll();
-	}
-
-	@GetMapping("/list/{id}")
-	public Enrollment findById(@PathVariable Long id) {
-		return enrollmentService.findById(id);
+	@GetMapping("/course/{courseId}")
+	public List<Student> findById(@PathVariable Long courseId) {
+		return enrollmentService.findStudentsByCourseId(courseId);
 	}
 
 	@DeleteMapping("/delete/{id]")

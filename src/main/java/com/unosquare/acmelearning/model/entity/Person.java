@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +35,7 @@ public class Person implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String email;
 
+	@JsonIgnore
     @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
     @Cascade(CascadeType.ALL)
