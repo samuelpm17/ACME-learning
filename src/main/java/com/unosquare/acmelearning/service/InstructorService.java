@@ -18,5 +18,7 @@ public interface InstructorService {
 
 	public void delete(Long id);
 	
+	public List<Course> findAssignedCourses(String authorization) throws ApplicationException;
+	
 	public void assingCourseToInstructor(Long instructorId, Course course) throws BusinessException;
 }

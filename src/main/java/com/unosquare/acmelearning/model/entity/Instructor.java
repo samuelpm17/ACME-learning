@@ -1,10 +1,16 @@
 package com.unosquare.acmelearning.model.entity;
 
-import java.util.Set;
+import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -14,12 +20,17 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "instructors")
-@PrimaryKeyJoinColumn(name = "person_id")
-public class Instructor extends Person {
+public class Instructor implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 	private Long salary;
 	@OneToMany
-	private Set<Course> courses;
+	private List<Course> courses;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id", referencedColumnName = "id")
+	private Person person;
 
 	private static final long serialVersionUID = -6378586931253369795L;
 

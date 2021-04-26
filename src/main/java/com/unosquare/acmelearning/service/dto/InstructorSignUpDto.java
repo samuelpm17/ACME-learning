@@ -1,5 +1,7 @@
 package com.unosquare.acmelearning.service.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +10,11 @@ import lombok.Setter;
 public class InstructorSignUpDto {
     private String name;
     private String lastname;
+    @NotEmpty
     private String email;
+    @NotEmpty
     private String username;
+    @NotEmpty
     private String password;
     private Long salary;
 }

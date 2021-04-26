@@ -1,7 +1,5 @@
 package com.unosquare.acmelearning.security.service;
 
-import java.util.function.Function;
-
 import org.springframework.stereotype.Service;
 
 import com.unosquare.acmelearning.exception.ApplicationException;
@@ -15,13 +13,13 @@ public class JsonWebTokenService {
     public String getUserNameFromRequest(String authorizationParam) throws ApplicationException {
         String token = authorizationParam.substring("Bearer ".length());
         
-        return getClaimFromToken(token, Claims::getSubject);
+        return getClaimFromToken(token, "user_name");
     }
     
-    private <T> T getClaimFromToken(final String token, final Function<Claims, T> claimsResolver)
+    private String getClaimFromToken(final String token, String claimName)
             throws ApplicationException {
         final Claims claims = getAllClaimsFromToken(token);
-        return claimsResolver.apply(claims);
+        return claims.get(claimName, String.class);
     }
 
     private Claims getAllClaimsFromToken(final String token) throws ApplicationException {
