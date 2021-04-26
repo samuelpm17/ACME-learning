@@ -11,6 +11,7 @@ public interface CourseService {
 	public List<Course> findAll();
 	public Course findById(Long id);
 	public Course create(CourseCreationDto courseDto) throws BusinessException;
-	public void delete(Long Id);
+	public void cancel(Long id) throws BusinessException;
+	public void startCourse(Long id) throws BusinessException;
 	
 }

@@ -27,6 +27,7 @@ public class Course implements Serializable{
 	private String name;
 	private String description;
 	private boolean started;
+	private boolean active = true;
 
 	public Course(String name, String description) {
         this.name = name;

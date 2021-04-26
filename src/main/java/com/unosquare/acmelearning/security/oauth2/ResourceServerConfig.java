@@ -3,6 +3,7 @@ package com.unosquare.acmelearning.security.oauth2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -31,7 +32,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers("/oauth/token").permitAll()
 		.antMatchers("/h2-console/**").permitAll()
-        .antMatchers("/courses/create").hasRole("INSTRUCTOR")
+        .antMatchers(HttpMethod.POST, "/courses/**").hasRole("INSTRUCTOR")
+        .antMatchers(HttpMethod.PUT, "/courses/**").hasRole("INSTRUCTOR")
+        .antMatchers(HttpMethod.DELETE, "/courses/**").hasRole("INSTRUCTOR")
         .antMatchers("/instructors/**").hasRole("INSTRUCTOR")
         .antMatchers("/courses/list").hasRole("STUDENT")
 		//.antMatchers(HttpMethod.GET,"/api/users/**").hasAnyRole("ADMIN","USER")
