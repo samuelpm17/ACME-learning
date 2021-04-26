@@ -1,0 +1,260 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ACME",
+		"_postman_id": "e41cfb0d-c56d-e42d-511a-8fa170b71fa7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Log in",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "learning",
+						"password": "1234567890",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "http://localhost:8080/oauth/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bGVhcm5pbmc6MTIzNDU2Nzg5MA==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "samuel.pena",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor: Sign Up",
+			"request": {
+				"url": "http://localhost:8080/instructors/signup",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Lana\",\n\"lastname\": \"Peña\",\n\"email\": \"lana.pena@mail.com\",\n\"username\": \"lana.pena\",\n\"password\": \"password123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor: Create Course",
+			"request": {
+				"url": "http://localhost:8080/courses/create",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0MzUwMTEsInVzZXJfbmFtZSI6InNhbXVlbC5wZW5hIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9JTlNUUlVDVE9SIl0sImp0aSI6ImQ0MWFiNTJkLTFmZjYtNDNhZC04NjdlLTBmOTZmMzBiODczMiIsImNsaWVudF9pZCI6ImxlYXJuaW5nIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.9U9i5HQqdwC-Lld9DeOxFvmChlBFk0t8bPXM1ldAQkw",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Geography\",\n    \"instructorId\":1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor: Start Course",
+			"request": {
+				"url": "http://localhost:8080/courses/start/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NDI4NjgsInVzZXJfbmFtZSI6ImFkcmlhbmEuamFyYW1pbGxvIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9JTlNUUlVDVE9SIl0sImp0aSI6IjNmY2U4MmRiLTNmODItNGE4MC1hNGM2LTRlODE2YzQxZTFjMCIsImNsaWVudF9pZCI6ImxlYXJuaW5nIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.fTVlMTU1mDsEUleT9Bn_uGZCRkhxcXNOMdrPs5Wy6aY",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor: Cancel course",
+			"request": {
+				"url": "http://localhost:8080/courses/cancel/4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NDI4NjgsInVzZXJfbmFtZSI6ImFkcmlhbmEuamFyYW1pbGxvIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9JTlNUUlVDVE9SIl0sImp0aSI6IjNmY2U4MmRiLTNmODItNGE4MC1hNGM2LTRlODE2YzQxZTFjMCIsImNsaWVudF9pZCI6ImxlYXJuaW5nIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.fTVlMTU1mDsEUleT9Bn_uGZCRkhxcXNOMdrPs5Wy6aY",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor: List my courses",
+			"request": {
+				"url": "http://localhost:8080/instructors/mycourses",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NDI4NjgsInVzZXJfbmFtZSI6ImFkcmlhbmEuamFyYW1pbGxvIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9JTlNUUlVDVE9SIl0sImp0aSI6IjNmY2U4MmRiLTNmODItNGE4MC1hNGM2LTRlODE2YzQxZTFjMCIsImNsaWVudF9pZCI6ImxlYXJuaW5nIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.fTVlMTU1mDsEUleT9Bn_uGZCRkhxcXNOMdrPs5Wy6aY",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Instructor: List Course Students",
+			"request": {
+				"url": "http://localhost:8080/enrollments/course/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NTMwOTksInVzZXJfbmFtZSI6InNhbXVlbC5wZW5hIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9JTlNUUlVDVE9SIl0sImp0aSI6IjAwNjA3MTkxLWNkNmItNDliOS04ZGIyLTMxMzQwNDU0NmM1NSIsImNsaWVudF9pZCI6ImxlYXJuaW5nIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.O3euOeoR8w-_nFPU3DhEcFdQN9N-GX2YTKVX7BNUFC8",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Student: List all courses",
+			"request": {
+				"url": "http://localhost:8080/courses/list",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0MjQzOTcsInVzZXJfbmFtZSI6ImFuZHJlcy5wZXJleiIsImF1dGhvcml0aWVzIjpbIlJPTEVfU1RVREVOVCJdLCJqdGkiOiIzMzUyMDczNS1lZmVmLTRlYTQtOTUzMS04ODRmMjAzZmU4NzIiLCJjbGllbnRfaWQiOiJsZWFybmluZyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.R1JdPA1cJG99YUd8DsmU7GbSTRk9F1c1-ZG7lR9OZNU",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Student: Sign Up",
+			"request": {
+				"url": "http://localhost:8080/students/signup",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Lana\",\n\"lastname\": \"Peña\",\n\"email\": \"lana.pena@mail.com\",\n\"username\": \"lana.pena\",\n\"password\": \"password123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Student: enroll to course",
+			"request": {
+				"url": "http://localhost:8080/enrollments/enroll/course/4",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NTkwOTUsInVzZXJfbmFtZSI6ImFuZHJlcy5wZXJleiIsImF1dGhvcml0aWVzIjpbIlJPTEVfU1RVREVOVCJdLCJqdGkiOiIzMzZhNWU5MC1mZmVhLTQ4MGYtOWZiMi1iNGY4MTcxOTYyZTAiLCJjbGllbnRfaWQiOiJsZWFybmluZyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Y3npOMJu1v5jK3m6HickrX2pLh4QaxLCKZr4rtEAfdo",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Student: Drop Course",
+			"request": {
+				"url": "http://localhost:8080/enrollments/drop/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NTkwOTUsInVzZXJfbmFtZSI6ImFuZHJlcy5wZXJleiIsImF1dGhvcml0aWVzIjpbIlJPTEVfU1RVREVOVCJdLCJqdGkiOiIzMzZhNWU5MC1mZmVhLTQ4MGYtOWZiMi1iNGY4MTcxOTYyZTAiLCJjbGllbnRfaWQiOiJsZWFybmluZyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Y3npOMJu1v5jK3m6HickrX2pLh4QaxLCKZr4rtEAfdo",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Student: List Enrolled Courses",
+			"request": {
+				"url": "http://localhost:8080/enrollments/mycourses",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk0NTkwOTUsInVzZXJfbmFtZSI6ImFuZHJlcy5wZXJleiIsImF1dGhvcml0aWVzIjpbIlJPTEVfU1RVREVOVCJdLCJqdGkiOiIzMzZhNWU5MC1mZmVhLTQ4MGYtOWZiMi1iNGY4MTcxOTYyZTAiLCJjbGllbnRfaWQiOiJsZWFybmluZyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Y3npOMJu1v5jK3m6HickrX2pLh4QaxLCKZr4rtEAfdo",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
